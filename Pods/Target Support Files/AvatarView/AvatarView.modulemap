@@ -1,0 +1,6 @@
+framework module AvatarView {
+  umbrella header "AvatarView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,16 +9,15 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    var contacts = [Contact]()
-    var selectedContact: Contact? = nil
     @IBOutlet weak var duplicatesFoundView: DuplicatesFoundView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var tableView: UITableView!
     
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Contacts.plist")
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var contacts = [Contact]()
+    var duplicates: [String: [Contact]] = [:]
+    var selectedContact: Contact? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,39 +26,97 @@ class ViewController: UIViewController {
         tableView.delegate = self
         searchBar.delegate = self
         duplicatesFoundView.delegate = self
+        
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil) , forCellReuseIdentifier: K.cellIdentifier )
         
-        let numOfDuplicates = getNumOfDuplicates()
+        loadContacts()
+        setDuplicates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadContacts()
+        setDuplicates()
+    }
+    
+    func setDuplicates() {
+        for contact in contacts {
+            if let currName = contact.name {
+                if let dupes = duplicates[currName] {
+                    if dupes.count < 2 {
+                        duplicates[currName]?.append(contact)
+                    }
+               } else {
+                   duplicates[currName] = [contact]
+               }
+            }
+        }
+        
+        for (key, value) in duplicates {
+            if value.count < 2 {
+                duplicates[key] = nil
+            }
+        }
+        
+        printDupes()
+        updateDuplicatesFoundView()
+    }
+    
+    func printDupes() {
+        print("===== DUPLICATES =====")
+        print()
+        print(duplicates)
+        print()
+    }
+    
+    func updateDuplicatesFoundView() {
+        let numOfDuplicates = duplicates.count
         if numOfDuplicates > 0 {
             duplicatesFoundView.isHidden = false
             let plural = numOfDuplicates > 1 ? "s":""
             duplicatesFoundView.titleLabel.text = "\(numOfDuplicates) Duplicate\(plural) Found"
         }
+    }
+    
+    func createNewContact(name: String, phoneNumber: String?) -> Contact {
+        let newContact = Contact(context: self.context)
+        newContact.name = name
+        print(phoneNumber)
+        if let phoneNumberString = phoneNumber {
+            if phoneNumberString.count > 0 {
+                newContact.phoneNumber = phoneNumberString
+            }
+        }
         
-        loadContacts()
+        return newContact
     }
 
 //MARK: - Add New Contact
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        var textField = UITextField()
+        var nameTextField = UITextField()
+        var numberTextField = UITextField()
         
         let alert = UIAlertController(title: K.addNewContact, message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            if textField.text?.count ?? Int.min > 0 {
-                let newContact = Contact(context: self.context)
-                newContact.name = textField.text!
-//                newContact.parentCategory = self.selectedCategory
+            if nameTextField.text?.count ?? Int.min > 0 {
+                print(numberTextField.text)
+                let newContact = self.createNewContact(name: nameTextField.text!, phoneNumber: numberTextField.text)
                 self.contacts.append(newContact)
                 self.saveContacts()
+                self.setDuplicates()
             }
         }
         
         alert.addAction(action)
         
         alert.addTextField { (field) in
-            textField = field
-            textField.placeholder = K.addNewContact
+            nameTextField = field
+            nameTextField.placeholder = K.addNewContact
+        }
+        
+        alert.addTextField { (field) in
+            numberTextField = field
+            numberTextField.placeholder = K.addPhoneNumber
         }
         
         present(alert, animated: true, completion: nil)
@@ -95,21 +152,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func getNumOfDuplicates() -> Int {
-        let request: NSFetchRequest<Contact> = Contact.fetchRequest()
-        request.predicate = NSPredicate(format: "name == %@", "hannah")
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
-        var duplicates = [Contact]()
-        do {
-            duplicates = try context.fetch(request)
-        } catch {
-            print("Error fetching data from context: \(error)")
-        }
-        
-        return duplicates.count + 1
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailsSegue {
             let destinationVC = segue.destination as! ContactDetailsViewController
@@ -117,7 +159,10 @@ class ViewController: UIViewController {
                 destinationVC.contact = selectedContact
             }
             
-        }
+        } else if segue.identifier == K.duplicatesSegue {
+            let destinationVC = segue.destination as! DuplicatesFoundViewController
+            destinationVC.duplicates = duplicates
+        } 
     }
     
 }
@@ -127,6 +172,7 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         selectedContact = contacts[row]
+        currentlySelectedContact = contacts[row]
         performSegue(withIdentifier: K.detailsSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

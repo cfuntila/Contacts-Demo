@@ -34,12 +34,10 @@ class DuplicatesFoundView: UIView {
     }
    
     @IBAction func closeButtonPressed(_ sender: Any) {
-        print("x button pressed")
         self.isHidden = true
     }
     
     @IBAction func viewDuplicatesPressed(_ sender: UIButton) {
-        print("View Duplicates pressed")
         delegate?.viewDuplicatesButtonPressed()
     }
    }

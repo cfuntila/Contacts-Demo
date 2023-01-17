@@ -1,0 +1,16 @@
+PODS:
+  - AvatarView (2.0.2)
+
+DEPENDENCIES:
+  - AvatarView
+
+SPEC REPOS:
+  trunk:
+    - AvatarView
+
+SPEC CHECKSUMS:
+  AvatarView: 326301cb9a0cc655899251b2589b5d17daf22169
+
+PODFILE CHECKSUM: 8cb8a6166a8b58d3f47269d07f43252302becbe1
+
+COCOAPODS: 1.11.3

@@ -9,15 +9,17 @@ import Foundation
 
 struct K {
     static let appName = "ContactsDemo"
+    
     static let cellIdentifier = "ReusableCell"
     static let cellNibName = "ContactCell"
+   
+    static let addNewContact = "Enter name"
+    static let addPhoneNumber = "Enter phone number"
+    
     static let detailsSegue = "goToContact"
-    static let addNewContact = "Add New Contact"
     static let duplicatesSegue = "goToDuplicates"
     static let editContactSegue = "goToEdit"
+    static let backToDetailsSegue = "goBackToDetails"
     
-    struct FStore {
-        static let collectionName = "contacts"
-        static let nameField = "name"
-    }
+    static let mobile = "mobile"
 }
