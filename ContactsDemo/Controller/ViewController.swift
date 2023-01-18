@@ -27,18 +27,24 @@ class ViewController: UIViewController {
         searchBar.delegate = self
         duplicatesFoundView.delegate = self
         
+        duplicatesFoundView.layer.cornerRadius = duplicatesFoundView.frame.size.height/2
+        
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil) , forCellReuseIdentifier: K.cellIdentifier )
         
+        loadAllData()
+    }
+    
+    func loadAllData() {
         loadContacts()
-        setDuplicates()
+        loadDuplicates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadContacts()
-        setDuplicates()
+        loadAllData()
     }
     
-    func setDuplicates() {
+    //MARK: - Duplicate Contacts Methods
+    func loadDuplicates() {
         for contact in contacts {
             if let currName = contact.name {
                 if let dupes = duplicates[currName] {
@@ -57,7 +63,6 @@ class ViewController: UIViewController {
             }
         }
         
-        printDupes()
         updateDuplicatesFoundView()
     }
     
@@ -74,52 +79,18 @@ class ViewController: UIViewController {
             duplicatesFoundView.isHidden = false
             let plural = numOfDuplicates > 1 ? "s":""
             duplicatesFoundView.titleLabel.text = "\(numOfDuplicates) Duplicate\(plural) Found"
+        } else {
+            duplicatesFoundView.isHidden = true
         }
-    }
-    
-    func createNewContact(name: String, phoneNumber: String?) -> Contact {
-        let newContact = Contact(context: self.context)
-        newContact.name = name
-        print(phoneNumber)
-        if let phoneNumberString = phoneNumber {
-            if phoneNumberString.count > 0 {
-                newContact.phoneNumber = phoneNumberString
-            }
-        }
-        
-        return newContact
     }
 
-//MARK: - Add New Contact
+    //MARK: - Add New Contact
+    func addUsingView() {
+        performSegue(withIdentifier: K.createContactSegue, sender: self)
+    }
+    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        var nameTextField = UITextField()
-        var numberTextField = UITextField()
-        
-        let alert = UIAlertController(title: K.addNewContact, message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            if nameTextField.text?.count ?? Int.min > 0 {
-                print(numberTextField.text)
-                let newContact = self.createNewContact(name: nameTextField.text!, phoneNumber: numberTextField.text)
-                self.contacts.append(newContact)
-                self.saveContacts()
-                self.setDuplicates()
-            }
-        }
-        
-        alert.addAction(action)
-        
-        alert.addTextField { (field) in
-            nameTextField = field
-            nameTextField.placeholder = K.addNewContact
-        }
-        
-        alert.addTextField { (field) in
-            numberTextField = field
-            numberTextField.placeholder = K.addPhoneNumber
-        }
-        
-        present(alert, animated: true, completion: nil)
+        addUsingView()
     }
     
     //MARK: Model Manupulation Methods
@@ -129,7 +100,7 @@ class ViewController: UIViewController {
         } catch {
             print("Error saving context: \(error)")
         }
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     func loadContacts() {
@@ -152,19 +123,47 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailsSegue {
             let destinationVC = segue.destination as! ContactDetailsViewController
             if let selectedContact = selectedContact {
                 destinationVC.contact = selectedContact
             }
-            
         } else if segue.identifier == K.duplicatesSegue {
             let destinationVC = segue.destination as! DuplicatesFoundViewController
+            destinationVC.mergeDelegate = self
             destinationVC.duplicates = duplicates
-        } 
+        } else if segue.identifier == K.createContactSegue {
+            let destinationVC = segue.destination as! EditContactViewController
+            destinationVC.isNewContact = true
+        }
     }
     
+    func findRowFor(value: Contact) -> Int {
+        for i in 0..<contacts.count {
+            let contact = contacts[i]
+            if contact == value {
+                return i
+            }
+        }
+        return -1
+    }
+    
+}
+
+
+
+//MARK: - Merge Contact Delegate Methods
+extension ViewController: MergeContactDelegate {
+    func userDidMerge(_ contact: Contact) {
+        duplicates.removeValue(forKey: contact.name!)
+        let rowToDelete = findRowFor(value: contact)
+        if rowToDelete >= 0 {
+            deleteContact(at: rowToDelete)
+            loadAllData()
+        }
+    }
 }
 
 //MARK: - Table View Delegate Methods
@@ -187,13 +186,11 @@ extension ViewController: UITableViewDelegate {
                 print("Sharing \(contact)")
             }
             
-            // Create an action for sharing
+            // Create an action for deleting
             let delete = UIAction(title: "Delete Contact", image: UIImage(systemName: "trash")) { action in
                 print("Deleting \(contact)")
                 self.deleteContact(at: indexPath.row)
             }
-
-            // Create other actions...
 
             return UIMenu(title: "", children: [share, delete])
         }

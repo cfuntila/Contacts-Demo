@@ -10,6 +10,7 @@ import UIKit
 class EditContactViewController: UIViewController, UITextFieldDelegate {
     
     var contact: Contact?
+    var isNewContact: Bool = false
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var companyTextField: UITextField!
@@ -19,8 +20,36 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: K.cancelButtonTitle, style: .done, target: self, action:  #selector(self.popView))
         
-        loadContactInformation()
+        if isNewContact == false {
+            self.title = K.editTitle
+            loadContactInformation()
+        } else {
+            self.title = K.newContactTitle
+        }
+    }
+    
+    func createNewContact() -> Contact {
+        let newContact = Contact(context: self.context)
+        if let name = nameTextField.text {
+            newContact.name = name
+        }
+        if let phoneNumberString = phoneTextField.text {
+            if phoneNumberString.count > 0 {
+                newContact.phoneNumber = phoneNumberString
+            }
+        }
+        
+        return newContact
+    }
+    
+    @objc
+    func popView() {
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
     }
     
     func loadContactInformation() {
@@ -35,34 +64,25 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == K.backToDetailsSegue {
-//            let destinationVC = segue.destination as! ContactDetailsViewController
-//            destinationVC.contact = contact
-//        }
-    }
-    
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
-//        guard let contact = contact else {
-//            return
-//        }
-//
-//        contact.name = nameTextField.text
-//        contact.phoneNumber = phoneTextField.text
         
-        guard let currentlySelectedContact = currentlySelectedContact else {
-            return
+        if isNewContact == false {
+            guard let currentlySelectedContact = currentlySelectedContact else {
+                return
+            }
+            print("Here")
+            currentlySelectedContact.name = nameTextField.text
+            currentlySelectedContact.phoneNumber = phoneTextField.text
+            
+            saveContacts()
+            
+        } else {
+            let newContact = self.createNewContact()
+            saveContacts()
+            isNewContact = false
         }
         
-        currentlySelectedContact.name = nameTextField.text
-        currentlySelectedContact.phoneNumber = phoneTextField.text
-        
-        saveContacts()
-        
-        if let navController = self.navigationController {
-            navController.popViewController(animated: true)
-        }
-//        performSegue(withIdentifier: K.backToDetailsSegue, sender: self)
+        popView()
     }
     
     func saveContacts() {

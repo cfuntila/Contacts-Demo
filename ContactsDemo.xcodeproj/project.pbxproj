@@ -25,6 +25,9 @@
 		AF8081B729750B8100563426 /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8081B629750B8100563426 /* ContactDetailsViewController.swift */; };
 		AFE5AC05297666C800124B57 /* EditContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE5AC04297666C800124B57 /* EditContactViewController.swift */; };
 		AFE5AC072976729900124B57 /* SelectedContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE5AC062976729900124B57 /* SelectedContact.swift */; };
+		AFE5AC0A29775D1900124B57 /* DuplicateFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFE5AC0929775D1900124B57 /* DuplicateFoundCell.xib */; };
+		AFE5AC0C29775D6200124B57 /* DuplicateFoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE5AC0B29775D6200124B57 /* DuplicateFoundCell.swift */; };
+		AFE5AC0E2977844A00124B57 /* MergeDuplicatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE5AC0D2977844A00124B57 /* MergeDuplicatesViewController.swift */; };
 		AFFAD5B129761ACA00637B07 /* DuplicatesFoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFAD5B029761ACA00637B07 /* DuplicatesFoundViewController.swift */; };
 		E84AAC02E9DD720A83BFB049 /* Pods_ContactsDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569C40AF33730C726DBFCC0A /* Pods_ContactsDemo.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +74,9 @@
 		AF8081B629750B8100563426 /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		AFE5AC04297666C800124B57 /* EditContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactViewController.swift; sourceTree = "<group>"; };
 		AFE5AC062976729900124B57 /* SelectedContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedContact.swift; sourceTree = "<group>"; };
+		AFE5AC0929775D1900124B57 /* DuplicateFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DuplicateFoundCell.xib; sourceTree = "<group>"; };
+		AFE5AC0B29775D6200124B57 /* DuplicateFoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFoundCell.swift; sourceTree = "<group>"; };
+		AFE5AC0D2977844A00124B57 /* MergeDuplicatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeDuplicatesViewController.swift; sourceTree = "<group>"; };
 		AFFAD5B029761ACA00637B07 /* DuplicatesFoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicatesFoundViewController.swift; sourceTree = "<group>"; };
 		D18FD67414503FF3EB05A4DF /* Pods-ContactsDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsDemo.debug.xcconfig"; path = "Target Support Files/Pods-ContactsDemo/Pods-ContactsDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +183,7 @@
 				AF808175297275EE00563426 /* Main.storyboard */,
 				AF8081B5297502D900563426 /* DuplicatesFoundView */,
 				AF8081B4297502C800563426 /* ContactCell */,
+				AFE5AC0829775CD100124B57 /* DuplicateFoundCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +195,7 @@
 				AF8081B629750B8100563426 /* ContactDetailsViewController.swift */,
 				AFFAD5B029761ACA00637B07 /* DuplicatesFoundViewController.swift */,
 				AFE5AC04297666C800124B57 /* EditContactViewController.swift */,
+				AFE5AC0D2977844A00124B57 /* MergeDuplicatesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -219,6 +227,15 @@
 				AF8081B02974F4B000563426 /* DuplicatesFoundView.xib */,
 			);
 			path = DuplicatesFoundView;
+			sourceTree = "<group>";
+		};
+		AFE5AC0829775CD100124B57 /* DuplicateFoundCell */ = {
+			isa = PBXGroup;
+			children = (
+				AFE5AC0929775D1900124B57 /* DuplicateFoundCell.xib */,
+				AFE5AC0B29775D6200124B57 /* DuplicateFoundCell.swift */,
+			);
+			path = DuplicateFoundCell;
 			sourceTree = "<group>";
 		};
 		E6C50307D2678C1C63F281B7 /* Frameworks */ = {
@@ -339,6 +356,7 @@
 				AF80817C297275EF00563426 /* LaunchScreen.storyboard in Resources */,
 				AF808179297275EF00563426 /* Assets.xcassets in Resources */,
 				AF8081B12974F4B000563426 /* DuplicatesFoundView.xib in Resources */,
+				AFE5AC0A29775D1900124B57 /* DuplicateFoundCell.xib in Resources */,
 				AF808177297275EE00563426 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +434,8 @@
 				AFFAD5B129761ACA00637B07 /* DuplicatesFoundViewController.swift in Sources */,
 				AF808172297275EE00563426 /* SceneDelegate.swift in Sources */,
 				AF8081B729750B8100563426 /* ContactDetailsViewController.swift in Sources */,
+				AFE5AC0E2977844A00124B57 /* MergeDuplicatesViewController.swift in Sources */,
+				AFE5AC0C29775D6200124B57 /* DuplicateFoundCell.swift in Sources */,
 				AF8081A9297282D200563426 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
