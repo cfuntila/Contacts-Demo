@@ -193,8 +193,8 @@
 			children = (
 				AF808173297275EE00563426 /* ViewController.swift */,
 				AF8081B629750B8100563426 /* ContactDetailsViewController.swift */,
-				AFFAD5B029761ACA00637B07 /* DuplicatesFoundViewController.swift */,
 				AFE5AC04297666C800124B57 /* EditContactViewController.swift */,
+				AFFAD5B029761ACA00637B07 /* DuplicatesFoundViewController.swift */,
 				AFE5AC0D2977844A00124B57 /* MergeDuplicatesViewController.swift */,
 			);
 			path = Controller;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WFh-EQ-9m5">
-    <device id="retina6_0" orientation="portrait" appearance="dark"/>
+    <device id="retina4_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ContactsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YYh-bC-hOg">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TYW-nf-6Jb">
-                                <rect key="frame" x="10" y="91" width="370" height="719"/>
+                                <rect key="frame" x="10" y="44" width="300" height="524"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contacts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMs-vq-ujb">
-                                        <rect key="frame" x="0.0" y="0.0" width="173.66666666666666" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="173.5" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="K0m-kg-jwy"/>
@@ -31,7 +31,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-l9-ih9">
-                                        <rect key="frame" x="0.0" y="51" width="370" height="228"/>
+                                        <rect key="frame" x="0.0" y="51" width="300" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -39,21 +39,21 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QYa-Wf-2ji" customClass="DuplicatesFoundView" customModule="ContactsDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="284" width="370" height="170"/>
+                                        <rect key="frame" x="0.0" y="112" width="300" height="170"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="170" id="JDN-jT-3Ft"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LHm-Lg-pwY">
-                                        <rect key="frame" x="0.0" y="289" width="370" height="430"/>
+                                        <rect key="frame" x="0.0" y="117" width="300" height="407"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" id="rOM-DL-dfG">
-                                                <rect key="frame" x="0.0" y="50" width="370" height="43.666667938232422"/>
+                                                <rect key="frame" x="0.0" y="50" width="300" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rOM-DL-dfG" id="6tS-vN-yHL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.666667938232422"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -108,18 +108,25 @@
             <objects>
                 <viewController id="lxN-C8-R82" customClass="DuplicatesFoundViewController" customModule="ContactsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zi5-k6-T5M">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wat-d0-TdR">
-                                <rect key="frame" x="16" y="0.0" width="358" height="787"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAR-dW-Exi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                                <items>
+                                    <navigationItem title="Duplicates" id="Vxy-vu-lVa"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wat-d0-TdR">
+                                <rect key="frame" x="10" y="68.333333333333314" width="370" height="718.66666666666674"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DuplicateFoundReusableCell" id="Dq2-LB-7Tk">
-                                        <rect key="frame" x="0.0" y="50" width="358" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="370" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dq2-LB-7Tk" id="VTh-2m-8Bf">
-                                            <rect key="frame" x="0.0" y="0.0" width="358" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -129,10 +136,9 @@
                         <viewLayoutGuide key="safeArea" id="hQB-SH-K8Q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wat-d0-TdR" firstAttribute="centerX" secondItem="Zi5-k6-T5M" secondAttribute="centerX" id="BS0-p4-BJM"/>
-                            <constraint firstItem="wat-d0-TdR" firstAttribute="bottom" secondItem="hQB-SH-K8Q" secondAttribute="bottom" id="e4P-pl-FC9"/>
-                            <constraint firstItem="wat-d0-TdR" firstAttribute="leading" secondItem="Zi5-k6-T5M" secondAttribute="leadingMargin" id="feb-bI-PRC"/>
-                            <constraint firstItem="wat-d0-TdR" firstAttribute="centerY" secondItem="Zi5-k6-T5M" secondAttribute="centerY" id="pCs-0K-IT9"/>
+                            <constraint firstItem="jAR-dW-Exi" firstAttribute="trailing" secondItem="hQB-SH-K8Q" secondAttribute="trailing" id="lad-hr-Ntp"/>
+                            <constraint firstItem="jAR-dW-Exi" firstAttribute="leading" secondItem="hQB-SH-K8Q" secondAttribute="leading" id="mEX-rm-Ym7"/>
+                            <constraint firstItem="jAR-dW-Exi" firstAttribute="top" secondItem="Zi5-k6-T5M" secondAttribute="top" id="qZf-lh-TM9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -149,11 +155,11 @@
             <objects>
                 <viewController id="iLb-u4-bcj" customClass="MergeDuplicatesViewController" customModule="ContactsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a78-wU-GSq">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="77" translatesAutoresizingMaskIntoConstraints="NO" id="uUM-Pg-EZT">
-                                <rect key="frame" x="20" y="139.99999999999997" width="240" height="507.33333333333326"/>
+                                <rect key="frame" x="20" y="20.5" width="240" height="507.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZy-Tp-aAH">
                                         <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
@@ -216,7 +222,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ib6-t9-io9">
-                                        <rect key="frame" x="0.0" y="473" width="240" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="473" width="240" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Merge"/>
                                         <connections>
@@ -241,6 +247,8 @@
                     <connections>
                         <outlet property="firstDetailsNameLabel" destination="QPc-yt-fmc" id="As5-Rb-Ccf"/>
                         <outlet property="firstDetailsNumberLabel" destination="GQ6-XK-8zJ" id="ldZ-Ug-2LG"/>
+                        <outlet property="secondDetailsNameLabel" destination="DWE-4j-5BZ" id="ibu-df-uDv"/>
+                        <outlet property="secondDetailsNumberLabel" destination="WrS-Gx-a0C" id="3f9-1o-kJH"/>
                         <outlet property="titleNameLabel" destination="FZy-Tp-aAH" id="zrM-PE-ac0"/>
                     </connections>
                 </viewController>
@@ -253,24 +261,24 @@
             <objects>
                 <viewController id="O29-vc-Qth" customClass="ContactDetailsViewController" customModule="ContactsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gSC-K0-O4M">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="Tzd-wc-RZd">
-                                <rect key="frame" x="0.0" y="99" width="390" height="646"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="464"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="8g2-gy-mn7" userLabel="Top Stack View">
-                                        <rect key="frame" x="131.66666666666666" y="0.0" width="126.66666666666666" height="210.66666666666666"/>
+                                        <rect key="frame" x="96.5" y="0.0" width="127" height="213"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="EGK-D9-DQM">
-                                                <rect key="frame" x="0.0" y="1" width="126.66666666666667" height="128"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="127" height="128.5"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="129.33000000000001" id="pgC-v0-QZu"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3j-RX-INR">
-                                                <rect key="frame" x="0.0" y="136.33333333333334" width="126.66666666666667" height="47"/>
+                                                <rect key="frame" x="0.0" y="136.5" width="127" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="QoW-WN-Oci"/>
                                                 </constraints>
@@ -278,8 +286,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-76-fRF" userLabel="Company">
-                                                <rect key="frame" x="0.0" y="190.33333333333331" width="126.66666666666667" height="20.333333333333343"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-76-fRF" userLabel="Company">
+                                                <rect key="frame" x="0.0" y="190.5" width="127" height="22.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="SOK-IB-sNN"/>
                                                 </constraints>
@@ -290,33 +298,30 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ZST-6v-OIl" userLabel="Middle Stack View">
-                                        <rect key="frame" x="50.666666666666657" y="236.66666666666669" width="289" height="28.333333333333314"/>
+                                        <rect key="frame" x="15.5" y="239" width="289" height="26"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4W-sO-v8D" userLabel="message">
-                                                <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="28.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="26"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="message.fill" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfm-xp-UWh" userLabel="mobile">
-                                                <rect key="frame" x="58.333333333333329" y="0.0" width="55.333333333333329" height="28.333333333333332"/>
+                                                <rect key="frame" x="58.5" y="0.0" width="55.5" height="26"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="phone.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="callButtonPressed:" destination="O29-vc-Qth" eventType="touchUpInside" id="vOd-4D-e5r"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnB-ZF-OeB" userLabel="video">
-                                                <rect key="frame" x="116.66666666666667" y="0.0" width="55.333333333333329" height="28.333333333333332"/>
+                                                <rect key="frame" x="117" y="0.0" width="55" height="26"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="video.fill" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnW-LX-DwV" userLabel="mail">
-                                                <rect key="frame" x="175" y="0.0" width="55.333333333333343" height="28.333333333333332"/>
+                                                <rect key="frame" x="175" y="0.0" width="55.5" height="26"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="envelope.fill" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svM-Cn-kCS" userLabel="pay">
-                                                <rect key="frame" x="233.33333333333334" y="0.0" width="55.666666666666657" height="28.333333333333332"/>
+                                                <rect key="frame" x="233.5" y="0.0" width="55.5" height="26"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="dollarsign" catalog="system"/>
                                             </button>
@@ -326,7 +331,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3X-S5-YMT" userLabel="phoneNumber">
-                                        <rect key="frame" x="50.666666666666657" y="291" width="289" height="70"/>
+                                        <rect key="frame" x="15.5" y="291" width="289" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="289" id="CMn-A1-Dno"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="NbS-UN-EwP"/>
@@ -336,7 +341,7 @@
                                         <buttonConfiguration key="configuration" style="gray" title="mobile" subtitle="8888888888"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjJ-6w-T4I">
-                                        <rect key="frame" x="50.666666666666657" y="387" width="289" height="259"/>
+                                        <rect key="frame" x="15.5" y="387" width="289" height="77"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
@@ -365,6 +370,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="companyLabel" destination="mSO-76-fRF" id="CbT-cK-pd7"/>
                         <outlet property="firstName" destination="U3j-RX-INR" id="drG-Ae-iSd"/>
                         <outlet property="phoneNumberButton" destination="v3X-S5-YMT" id="WLK-YH-chS"/>
                     </connections>
@@ -378,24 +384,24 @@
             <objects>
                 <viewController id="cZ5-Mw-aRa" customClass="EditContactViewController" customModule="ContactsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LNK-Fq-iAs">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TL9-zw-ODS">
-                                <rect key="frame" x="0.0" y="371" width="390" height="102"/>
+                                <rect key="frame" x="0.0" y="233" width="320" height="102"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CTE-nq-hte">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Company" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kaj-nF-DhD">
-                                        <rect key="frame" x="0.0" y="34" width="390" height="34"/>
+                                        <rect key="frame" x="0.0" y="34" width="320" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ib-O2-A11">
-                                        <rect key="frame" x="0.0" y="68" width="390" height="34"/>
+                                        <rect key="frame" x="0.0" y="68" width="320" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -412,7 +418,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Upf-8x-AfS">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Dzm-M1-XcO">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="Dzm-M1-XcO">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="cZ5-Mw-aRa" id="dTi-up-Vil"/>
                             </connections>
@@ -420,6 +426,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="companyTextField" destination="Kaj-nF-DhD" id="aeh-Ns-KFY"/>
+                        <outlet property="doneButton" destination="Dzm-M1-XcO" id="EGD-dJ-fA6"/>
                         <outlet property="nameTextField" destination="CTE-nq-hte" id="2uQ-Jh-dmj"/>
                         <outlet property="phoneTextField" destination="3Ib-O2-A11" id="2EX-g2-ITy"/>
                     </connections>
@@ -434,7 +441,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WFh-EQ-9m5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tzp-Fm-2gf">
-                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -448,7 +455,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g3n-wP-CkH"/>
+        <segue reference="Wha-c5-snS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="dollarsign" catalog="system" width="89" height="128"/>

@@ -12,13 +12,11 @@ protocol MergeContactDelegate {
 }
 
 class DuplicatesFoundViewController: UIViewController {
-    var mergeDelegate: MergeContactDelegate!
-    var duplicates: [String: [Contact]] = [:]
-    
-    var keysArray: [String] = []
-    
     @IBOutlet weak var tableView: UITableView!
     
+    var mergeDelegate: MergeContactDelegate!
+    var duplicates: [String: [Contact]] = [:]
+    var keysArray: [String] = []
     var selectedPair: [Contact] = []
     
     override func viewDidLoad() {
@@ -36,12 +34,6 @@ class DuplicatesFoundViewController: UIViewController {
             destinationVC.pairOfContacts = selectedPair
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-
-        
-        }
 }
 
 extension DuplicatesFoundViewController: MergeDuplicatePairDelegate {
@@ -54,9 +46,7 @@ extension DuplicatesFoundViewController: MergeDuplicatePairDelegate {
 
 extension DuplicatesFoundViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        print("selected a cell in dupes found!")
-        
+        let row = indexPath.row        
         let currentKey = keysArray[indexPath.row]
         selectedPair = duplicates[currentKey] as! [Contact]
         performSegue(withIdentifier: K.duplicateDetailsSegue, sender: self)
@@ -74,7 +64,6 @@ extension DuplicatesFoundViewController: UITableViewDataSource {
         
         keysArray = Array(duplicates.keys)
         let currentKey = keysArray[indexPath.row]
-        let currentIndexKey : [Contact] = duplicates[currentKey] as! [Contact]
         
         cell.contactNameLabel.text = currentKey
         return cell

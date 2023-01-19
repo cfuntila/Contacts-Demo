@@ -100,7 +100,6 @@ class ViewController: UIViewController {
         } catch {
             print("Error saving context: \(error)")
         }
-//        tableView.reloadData()
     }
     
     func loadContacts() {
@@ -118,6 +117,7 @@ class ViewController: UIViewController {
     func handleRequest(_ request: NSFetchRequest<Contact>) {
         do {
             contacts = try context.fetch(request)
+            contacts = contacts.sorted { $0.name!.lowercased() < $1.name!.lowercased() }
         } catch {
             print("Error fetching data from context: \(error)")
         }
@@ -127,9 +127,9 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.detailsSegue {
             let destinationVC = segue.destination as! ContactDetailsViewController
-            if let selectedContact = selectedContact {
-                destinationVC.contact = selectedContact
-            }
+//            if let selectedContact = selectedContact {
+//                destinationVC.contact = selectedContact
+//            }
         } else if segue.identifier == K.duplicatesSegue {
             let destinationVC = segue.destination as! DuplicatesFoundViewController
             destinationVC.mergeDelegate = self
@@ -181,15 +181,14 @@ extension ViewController: UITableViewDelegate {
 
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
 
-            // Create an action for sharing
             let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
                 print("Sharing \(contact)")
             }
             
-            // Create an action for deleting
             let delete = UIAction(title: "Delete Contact", image: UIImage(systemName: "trash")) { action in
                 print("Deleting \(contact)")
                 self.deleteContact(at: indexPath.row)
+                self.loadAllData()
             }
 
             return UIMenu(title: "", children: [share, delete])

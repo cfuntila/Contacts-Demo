@@ -7,11 +7,11 @@
 
 import UIKit
 
-class EditContactViewController: UIViewController, UITextFieldDelegate {
+class EditContactViewController: UIViewController {
     
-    var contact: Contact?
     var isNewContact: Bool = false
 
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var companyTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
@@ -20,6 +20,8 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameTextField.delegate = self
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: K.cancelButtonTitle, style: .done, target: self, action:  #selector(self.popView))
         
@@ -29,19 +31,28 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
         } else {
             self.title = K.newContactTitle
         }
+        
     }
     
     func createNewContact() -> Contact {
         let newContact = Contact(context: self.context)
+        
         if let name = nameTextField.text {
             newContact.name = name
         }
+        
         if let phoneNumberString = phoneTextField.text {
             if phoneNumberString.count > 0 {
                 newContact.phoneNumber = phoneNumberString
             }
         }
         
+        if let companyString = companyTextField.text {
+            if companyString.count > 0 {
+                newContact.company = companyString
+            }
+        }
+
         return newContact
     }
     
@@ -53,14 +64,18 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loadContactInformation() {
-        guard var contact = contact else {
+        guard let contact = currentlySelectedContact else {
             return
         }
         
         nameTextField.text = contact.name
-        
+        doneButton.isEnabled = true
         if let phoneNumber = contact.phoneNumber {
             phoneTextField.text = phoneNumber
+        }
+        
+        if let company = contact.company {
+            companyTextField.text = company
         }
     }
     
@@ -70,9 +85,10 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
             guard let currentlySelectedContact = currentlySelectedContact else {
                 return
             }
-            print("Here")
+
             currentlySelectedContact.name = nameTextField.text
             currentlySelectedContact.phoneNumber = phoneTextField.text
+            currentlySelectedContact.company = companyTextField.text
             
             saveContacts()
             
@@ -92,5 +108,18 @@ class EditContactViewController: UIViewController, UITextFieldDelegate {
             print("Error saving context: \(error)")
         }
     }
+    
+}
 
+extension EditContactViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = (nameTextField.text as? NSString)?.replacingCharacters(in: range, with: string) {
+            if !text.isEmpty{
+                doneButton.isEnabled = true
+            } else {
+                doneButton.isEnabled = false
+            }
+        }
+        return true
+    }
 }

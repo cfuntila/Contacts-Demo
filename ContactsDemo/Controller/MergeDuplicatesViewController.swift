@@ -18,16 +18,14 @@ class MergeDuplicatesViewController: UIViewController {
     @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var firstDetailsNameLabel: UILabel!
     @IBOutlet weak var firstDetailsNumberLabel: UILabel!
+    @IBOutlet weak var secondDetailsNameLabel: UILabel!
+    @IBOutlet weak var secondDetailsNumberLabel: UILabel!
     
     var pairOfContacts: [Contact] = []
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         loadContactInformation()
-        // Do any additional setup after loading the view.
     }
     
     func loadContactInformation() {
@@ -37,19 +35,22 @@ class MergeDuplicatesViewController: UIViewController {
         
         if let phoneNumber = firstContact.phoneNumber {
             firstDetailsNumberLabel.text = phoneNumber
+        } else {
+            firstDetailsNumberLabel.text = ""
         }
         
         let secondContact = pairOfContacts[1]
         titleNameLabel.text = secondContact.name
-        firstDetailsNameLabel.text = secondContact.name
+        secondDetailsNameLabel.text = secondContact.name
         
         if let phoneNumber = secondContact.phoneNumber {
-            firstDetailsNumberLabel.text = phoneNumber
+            secondDetailsNumberLabel.text = phoneNumber
+        } else {
+            secondDetailsNumberLabel.text = ""
         }
     }
     
     @IBAction func mergeButtonPressed(_ sender: UIButton) {
-//        context.delete(pairOfContacts[0])
         mergeDuplicateDelegate.didMerge(contact: pairOfContacts[0])
         dismiss(animated: true)
     }
